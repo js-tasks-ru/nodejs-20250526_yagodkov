@@ -29,8 +29,8 @@ export class TasksService {
       if (!user) throw new NotFoundException(`user with id ${assignedTo} is not found`);
       this.notificationsService.sendEmail(
         user.email,
-        '[Новая задача] Вы назначены ответственным за задачу:',
-        `"${title}"`
+        'Новая задача',
+        `Вы назначены ответственным за задачу: "${title}"`
       );
     }
 
