@@ -1,8 +1,20 @@
 import { Module } from "@nestjs/common";
-import { NotificationsService } from "./notifications.service";
+import { NotificationsService, NotificationsConfig } from "./notifications.service";
+
+const notificationsConfig: NotificationsConfig = {
+  senderEmail: "noreply@myapp.com",
+  smsGateway: "my-sms-gateway",
+  logFilePath: "./notifications.log",
+};
 
 @Module({
-  providers: [NotificationsService],
+  providers: [
+    NotificationsService,
+    {
+      provide: 'NOTIFICATIONS_CONFIG',
+      useValue: notificationsConfig,
+    },
+  ],
   exports: [NotificationsService],
 })
 export class NotificationsModule {}
